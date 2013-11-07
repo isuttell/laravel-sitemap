@@ -80,7 +80,11 @@ If an option isn't specificed, it's not include in the sitemap.
 
 ### Example
 ```
-Sitemap::addLink('https://github.com/isuttell/laravel-sitemap', array('lastmod'=>'now', 'changefreq' =>'daily', 'priority'=>1));
+Sitemap::addLink('https://github.com/isuttell/laravel-sitemap', array(
+	'lastmod'=>'now',
+	'changefreq' =>'daily',
+	'priority'=>1
+));
 ```
 
 Caching
