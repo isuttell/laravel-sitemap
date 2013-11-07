@@ -60,13 +60,12 @@ class Sitemap {
 	public static function make($options = array())
 	{
 		/*
-		 * option: cache => true | minutes
-		 *
 		 * By default we won't cache the sitemap. If the cache option is set to true then
 		 * we cache the sitemap for 24 hours otherwise if the cache option is an integer
 		 * we cache the sitemap for that many minutes
 		 */
-		if(isset($options['cache']) && ($options['cache'] > 0 || $options['cache'] === true)) {
+		if((\Config::get('laravel-sitemap::sitemap.cache') > 0 || \Config::get('laravel-sitemap::sitemap.cache') === true))
+		{
 			if(Cache::has('cachedSitemapView'))
 			{
 				$view = Cache::get('cachedSitemapView');
@@ -74,7 +73,7 @@ class Sitemap {
 			else
 			{
 				$view = static::getView();
-				Cache::put('cachedSitemapView', $view, $options['cache'] === true ? 60*24 : $options['cache']);
+				Cache::put('cachedSitemapView', $view, \Config::get('laravel-sitemap::sitemap.cache') === true ? 60 * 24 : \Config::get('laravel-sitemap::sitemap.cache'));
 			}
 		}
 		else

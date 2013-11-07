@@ -4,13 +4,6 @@ use Illuminate\Support\ServiceProvider;
 
 class LaravelSitemapServiceProvider extends ServiceProvider {
 	/**
-	 * A list registered links
-	 *
-	 * @var array
-	 */
-	protected $links = array();
-
-	/**
 	 * Indicates if loading of the provider is deferred.
 	 *
 	 * @var bool
@@ -25,6 +18,10 @@ class LaravelSitemapServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('isuttell/laravel-sitemap');
+		/*
+		 * Include routes.php so /sitemap.xml and /sitemap.xml.gz
+		 * can be assigned
+		 */
 		include __DIR__ . '/../../routes.php';
 	}
 
