@@ -28,12 +28,24 @@ class Sitemap {
 	/**
 	 * Lookup and add an action to the sitemap
 	 * @param string $action     Controller Name
-	 * @param array  $parameters action paramaters
+	 * @param array  $params action paramaters
 	 * @param array  $options    SitemapURL options
 	 */
-	public static function addAction($action, $parameters = array(), $options = array())
+	public static function addAction($action, $params = array(), $options = array())
 	{
-		$link = new SitemapURL(action($action, $parameters), $options);
+		$link = new SitemapURL(action($action, $params), $options);
+		array_push(static::$links, $link);
+	}
+
+	/**
+	 * Lookup and add a route to the sitemap
+	 * @param string $route   Route name
+	 * @param array  $params  route paramters
+	 * @param array  $options SitemapURL options
+	 */
+	public static function addRoute($route, $params = array(), $options = array())
+	{
+		$link = new SitemapURL(route($route, $params), $options);
 		array_push(static::$links, $link);
 	}
 

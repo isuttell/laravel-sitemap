@@ -46,6 +46,9 @@ use Isuttell\LaravelSitemap\Sitemap as Sitemap;
 Sitemap::addLink( url() ); //Add the base the url of the the Laravel App
 Sitemap::addLink( 'https://github.com/isuttell/laravel-sitemap' );
 
+//Routes
+Sitemap::addRoute( '/home', array() );
+
 //Actions
 Sitemap::addAction( 'HomeController@showWelcome', array() );
 ```
@@ -64,7 +67,7 @@ Route::get('/sitemap.xml.gz',[...]);
 
 Additional Options
 ------------------
-Both `Sitemap::addLink` and `Sitemap::addAction` support an additional options array:
+`Sitemap::addLink`, `Sitemap::addAction`, and `Sitemap::addAction` support an additional options array:
 ```
 	[...], array('lastmod'=>'11/11/2113', 'changefreq' =>'monthly', 'priority'=>0.5));
 ```
