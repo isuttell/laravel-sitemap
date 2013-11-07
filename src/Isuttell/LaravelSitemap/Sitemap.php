@@ -50,11 +50,38 @@ class Sitemap {
 	}
 
 	/**
+	 * Sort links by priority, change freq, loc
+	 */
+	private static function sort()
+	{
+		//Setup order of importantance
+		$changefreqs = array(
+			'hourly'  => 5,
+			'daily'   => 4,
+			'weekly'  => 3,
+			'monthly' => 2,
+			'yearly'  => 1,
+			'never'   => 0
+		);
+
+		//Setup invidual arrays to sort by
+		foreach(static::$links as $index => $link)
+		{
+			$priority[$index]   = $link->priority ? $link->priority : 0;
+			$changefreq[$index] = $link->changefreq ? $changefreqs[$link->changefreq] : 0;
+			$loc[$index]        = $link->loc;
+		}
+
+		array_multisort($priority, SORT_DESC, $changefreq, SORT_DESC, $loc, SORT_ASC, static::$links);
+	}
+
+	/**
 	 * Returns the Sitemap view based upon http://www.sitemaps.org/protocol.html
 	 * @return string
 	 */
 	private static function getView()
 	{
+		if(\Config::get('laravel-sitemap::sitemap.sort')) static::sort();
 		return \View::make('laravel-sitemap::sitemap')->with('links', static::$links);
 	}
 

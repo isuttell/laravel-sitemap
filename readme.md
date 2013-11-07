@@ -42,12 +42,16 @@ After your `Routes` in `routes.php` define which links you would like to add to 
 ```
 use Isuttell\LaravelSitemap\Sitemap as Sitemap;
 
+//Example Routes
+Route::get('/test', array('uses'=>'HomeController@showWelcome'));
+Route::get('/home', array('as'=>'home', 'uses'=>'HomeController@showWelcome'));
+
 //Standard
 Sitemap::addLink( url() ); //Add the base the url of the the Laravel App
 Sitemap::addLink( 'https://github.com/isuttell/laravel-sitemap' );
 
 //Routes
-Sitemap::addRoute( '/home', array() );
+Sitemap::addRoute( 'home', array() );
 
 //Actions
 Sitemap::addAction( 'HomeController@showWelcome', array() );
@@ -87,7 +91,15 @@ Sitemap::addLink('https://github.com/isuttell/laravel-sitemap', array(
 ));
 ```
 
-Caching
+Config
 ===============
+To change the default settings copy, `config/sitemap.php` to your own `app/config` folder. This will override the packages default settings.
 
-To enable caching, copy the `sitemap.php` and set the `cache` variable to `true` which will cause the sitemap to be cached by Laravel for 24 hours or an `integer` for the number of minutes you want to cache the sitemap. Caching will Laravel's built in caching features.
+Sorting
+---------------
+By default sorting is turned on. Links are sorted first by priority, then by change frequency, and then lastly by the link itself. To disable sorting and display links in the order they were added turn set `sort` to `false`.
+
+Caching
+---------------
+
+Caching is disabled by default. To enable caching, set the `cache` variable to `true` which will cause the sitemap to be cached by Laravel for 24 hours or an `integer` for the number of minutes you want to cache the sitemap. Caching will Laravel's built in caching features.
