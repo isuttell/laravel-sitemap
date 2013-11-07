@@ -11,7 +11,7 @@ class SitemapURL {
 	public $loc;
 
 	/**
-	 * Last modification date of link
+	 * Last modification date of link - Needs to be in DateTime::W3C  format
 	 * @var string
 	 */
 	public $lastmod = false;
@@ -44,7 +44,7 @@ class SitemapURL {
 		if(isset($options['lastmod']))
 		{
 			$lastmod = new \DateTime($options['lastmod']);
-			$this->lastmod    = $lastmod->format('Y-m-d');
+			$this->lastmod    = $lastmod->format(\DateTime::W3C);
 		}
 
 		if(isset($options['changefreq'])) $this->changefreq = $options['changefreq'];
