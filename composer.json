@@ -1,6 +1,7 @@
 {
     "name": "isuttell/laravel-sitemap",
     "description": "Laravel 4 Sitemap Generator",
+    "keywords" : ["sitemap", "laravel"],
     "authors": [
         {
             "name": "Isaac Suttell",
