@@ -1,4 +1,4 @@
-laravel-sitemap
+laravel-sitemap v0.1.0
 ===============
 
 A sitemap.xml generator for a Laravel 4
