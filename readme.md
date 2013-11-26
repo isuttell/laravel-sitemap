@@ -21,7 +21,7 @@ First add the following lines to the appropriate sections of your `composer.json
 	"repositories": [
 		{
 			"type": "vcs",
-			"url" : "git@github.com:isuttell/laravel-sitemap.git"
+			"url" : "https://github.com/isuttell/laravel-sitemap.git"
 		}
 	]
 ```
